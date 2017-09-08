@@ -4,18 +4,22 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
+import android.view.View;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
+    List<Persona> personas;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        List<Persona> personas = new ArrayList<>();
+        personas = new ArrayList<>();
 
         personas.add(new Persona("unoq", "1"));
         personas.add(new Persona("dos", "2"));
@@ -30,10 +34,21 @@ public class MainActivity extends AppCompatActivity {
 
         RecyclerView rvPersonas = (RecyclerView) super.findViewById(R.id.rcvPersona);
 
-        RecyclerView.Adapter adapter = new MyAdapter(personas);
+        View.OnClickListener onClickListener = new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                seHizoClickEnElItem(1);
+            }
+        };
+
+        RecyclerView.Adapter adapter = new MyAdapter(personas, onClickListener);
         rvPersonas.setAdapter(adapter);
 
         RecyclerView.LayoutManager lym = new LinearLayoutManager(this);
         rvPersonas.setLayoutManager(lym);
+    }
+
+    public void seHizoClickEnElItem(int i){
+        Log.d("Click Item", "Se hizo click en " + personas.get(i).getApellido());
     }
 }

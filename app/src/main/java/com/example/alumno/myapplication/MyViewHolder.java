@@ -11,14 +11,19 @@ import android.widget.TextView;
 public class MyViewHolder extends RecyclerView.ViewHolder {
 
     public View view;
-    public TextView lblNombre;
-    public TextView lblApellido;
+    public TextView Nombre;
+    public TextView Apellido;
 
     public MyViewHolder(View itemView) {
         super(itemView);
         this.view = itemView;
 
-        lblNombre = (TextView) this.view.findViewById(R.id.lblNombre);
-        lblApellido = (TextView) this.view.findViewById(R.id.lblApellido);
+        Nombre = (TextView) this.view.findViewById(R.id.lblNombre);
+        Apellido = (TextView) this.view.findViewById(R.id.lblApellido);
+    }
+
+    public void setOnClickListener(View.OnClickListener onClickListener) {
+        Nombre.setOnClickListener(onClickListener);
+        Apellido.setOnClickListener(onClickListener);
     }
 }

@@ -15,9 +15,11 @@ import java.util.List;
 public class MyAdapter extends RecyclerView.Adapter<MyViewHolder> {
 
     private List<Persona> personas;
+    private View.OnClickListener onClickListener;
 
-    public MyAdapter(List<Persona> personas) {
+    public MyAdapter(List<Persona> personas, View.OnClickListener onClickListener) {
         this.personas = personas;
+        this.onClickListener = onClickListener;
     }
 
     @Override
@@ -26,6 +28,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyViewHolder> {
         View v = (View) LayoutInflater.from(parent.getContext()).inflate(R.layout.item_layaut, parent, false);
 
         MyViewHolder ret = new MyViewHolder(v);
+        ret.setOnClickListener(this.onClickListener);
         return ret;
     }
 
@@ -36,8 +39,8 @@ public class MyAdapter extends RecyclerView.Adapter<MyViewHolder> {
         String nombre = p.getNombre();
         String apellido = p.getApellido();
 
-        holder.lblNombre.setText(nombre);
-        holder.lblApellido.setText(apellido);
+        holder.Nombre.setText(nombre);
+        holder.Apellido.setText(apellido);
     }
 
     @Override
